@@ -31,13 +31,13 @@ A post is one folder of content plus one folder of photos.
    date: 2024-10-14
    location: Northumberland coast
    description: A photographic study of quiet weather.
-   lead: /photos/the-weather-between-us/coastal-morning.png
+   lead: /photos/the-weather-between-us/window-watch.jpg
    photos:
-     - src: /photos/the-weather-between-us/coastal-morning.png
-       alt: A solitary rock emerging from a misty dawn sea
+     - src: /photos/the-weather-between-us/window-watch.jpg
+       alt: A dark dog sitting in silhouette, watching through a bright curtained window
        caption: The first light arrived without a sound.
-     - src: /photos/the-weather-between-us/winter-road.png
-       alt: A narrow road through a pale birch forest
+     - src: /photos/the-weather-between-us/yard-window.jpg
+       alt: A gravel yard and weathered outbuilding seen through the panes of a wide window
    ---
 
    The blurb goes here, as ordinary markdown. The first two sentences are what
