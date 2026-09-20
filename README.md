@@ -18,26 +18,28 @@ Open [http://localhost:3000](http://localhost:3000).
 
 A post is one folder of content plus one folder of photos.
 
-1. Put the photos in `public/photos/<slug>/`. Export them at roughly 1600px on
-   the long edge; square exports give the tidiest grid in the email. The RSS
-   feed links these files directly, so keep each one comfortably under ~500KB —
-   subscribers download them at full size.
+1. Put the photos in `public/photos/<slug>/`. Export them at roughly 2000px on
+   the long edge. Next.js image optimization is off (`images.unoptimized`), so
+   the file you commit is the file the browser gets, uncompressed by the
+   framework — and the RSS feed links the same file. Keep an eye on weight:
+   these land around 300KB-1MB each, and email subscribers download them
+   at full size.
 
 2. Create `content/posts/<slug>/index.mdx`:
 
    ```mdx
    ---
-   title: The Weather Between Us
-   date: 2024-10-14
-   location: Northumberland coast
-   description: A photographic study of quiet weather.
-   lead: /photos/the-weather-between-us/window-watch.jpg
+   title: Contrasts
+   date: 2026-09-14
+   location: Back yard, late summer
+   description: A set about hard light and what it leaves in shadow.
+   lead: /photos/contrasts/murray-mower.jpg
    photos:
-     - src: /photos/the-weather-between-us/window-watch.jpg
-       alt: A dark dog sitting in silhouette, watching through a bright curtained window
-       caption: The first light arrived without a sound.
-     - src: /photos/the-weather-between-us/yard-window.jpg
-       alt: A gravel yard and weathered outbuilding seen through the panes of a wide window
+     - src: /photos/contrasts/murray-mower.jpg
+       alt: A red Murray mower in a dark shed, lit by hard sun
+       caption: An optional one-line caption.
+     - src: /photos/contrasts/door-shadow.jpg
+       alt: A shadow falling across a white-painted door laid in the sun
    ---
 
    The blurb goes here, as ordinary markdown. The first two sentences are what
@@ -53,7 +55,7 @@ A post is one folder of content plus one folder of photos.
    | `location`    | no       | One line under the blurb, and in the email                          |
    | `description` | no       | Page metadata and the RSS `<description>`; falls back to the blurb  |
 
-3. `pnpm build`. The folder name becomes the URL (`/the-weather-between-us`), the
+3. `pnpm build`. The folder name becomes the URL (`/contrasts`), the
    post appears on the index, and it enters the feed. Photo dimensions are read
    from the files, so there is nothing to measure by hand.
 

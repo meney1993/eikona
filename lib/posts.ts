@@ -7,7 +7,7 @@ const POSTS_DIR = path.join(process.cwd(), 'content', 'posts')
 const PUBLIC_DIR = path.join(process.cwd(), 'public')
 
 export type Photo = {
-  /** Path under /public, e.g. /photos/the-weather-between-us/window-watch.jpg */
+  /** Path under /public, e.g. /photos/contrasts/murray-mower.jpg */
   src: string
   alt: string
   caption?: string
