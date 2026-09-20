@@ -1,11 +1,20 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Field Notes — A Photography Journal',
-  description: 'A quiet photography journal of light, weather, and the spaces between.',
-  generator: 'v0.app',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — A Photography Journal`,
+    template: `%s — ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    types: {
+      'application/rss+xml': [{ url: '/feed.xml', title: SITE_NAME }],
+    },
+  },
   icons: {
     icon: [
       {

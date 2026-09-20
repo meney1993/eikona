@@ -1,11 +1,15 @@
+import createMDX from '@next/mdx'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
+  pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  options: {
+    // Posts carry YAML frontmatter; this keeps it out of the rendered body.
+    remarkPlugins: ['remark-frontmatter'],
+  },
+})
+
+export default withMDX(nextConfig)

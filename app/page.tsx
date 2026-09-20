@@ -1,39 +1,37 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
-const post = {
-  title: 'The Weather Between Us',
-  date: 'October 14, 2024',
-  image: '/photos/coastal-morning.png',
-}
+import { getAllPosts } from '@/lib/posts'
+import { SITE_NAME } from '@/lib/site'
 
 export default function HomePage() {
+  const posts = getAllPosts()
+
   return (
     <main className="site-shell">
       <header className="site-header">
-        <Link className="site-title" href="/">Field Notes</Link>
+        <Link className="site-title" href="/">
+          {SITE_NAME}
+        </Link>
       </header>
 
       <section aria-label="Journal entries" className="index-list">
-        <Link href="/the-weather-between-us" className="index-entry">
-          <Image
-            src={post.image}
-            alt="A solitary rock in a misty dawn sea"
-            width={1800}
-            height={1200}
-            priority
-          />
-          <div className="entry-meta">
-            <h1>{post.title}</h1>
-            <time dateTime="2024-10-14">{post.date}</time>
-          </div>
-        </Link>
+        {posts.map((post, index) => (
+          <Link key={post.slug} href={`/${post.slug}`} className="index-entry">
+            <Image
+              src={post.lead.src}
+              alt={post.lead.alt}
+              width={post.lead.width}
+              height={post.lead.height}
+              sizes="(max-width: 900px) 100vw, 900px"
+              priority={index === 0}
+            />
+            <div className="entry-meta">
+              <h2>{post.title}</h2>
+              <time dateTime={post.date}>{post.displayDate}</time>
+            </div>
+          </Link>
+        ))}
       </section>
     </main>
   )
 }
-
-export const metadata = {
-  title: 'Field Notes — A Photography Journal',
-}
-
