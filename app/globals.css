@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #d3d3d0;
+  --muted: #777773;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-shell {
+  width: min(100% - 48px, 900px);
+  margin: 0 auto;
+  padding: 38px 0 100px;
+}
+
+.site-header {
+  margin-bottom: 96px;
+}
+
+.site-title {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.index-list {
+  width: 100%;
+}
+
+.index-entry {
+  display: block;
+}
+
+.index-entry img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 18px;
+}
+
+.entry-meta h1,
+.post-header h1 {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.entry-meta time,
+.post-header time {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.post-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.intro {
+  max-width: 680px;
+  margin: 0 0 112px;
+  color: #b8b8b4;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  line-height: 1.65;
+}
+
+.photo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
+}
+
+.photo-figure {
+  margin: 0;
+}
+
+.photo-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo-figure figcaption {
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .site-shell {
+    width: min(100% - 32px, 900px);
+    padding-top: 25px;
+  }
+
+  .site-header {
+    margin-bottom: 64px;
+  }
+
+  .entry-meta,
+  .post-header {
+    display: block;
+  }
+
+  .entry-meta time,
+  .post-header time {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .post-header {
+    margin-bottom: 40px;
+  }
+
+  .intro {
+    margin-bottom: 72px;
+    font-size: 16px;
+  }
+
+  .photo-stack {
+    gap: 72px;
+  }
+}

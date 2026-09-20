@@ -1,0 +1,70 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+const photographs = [
+  {
+    src: '/photos/coastal-morning.png',
+    alt: 'A solitary rock emerging from a misty dawn sea',
+    caption: 'The first light arrived without a sound.',
+  },
+  {
+    src: '/photos/winter-road.png',
+    alt: 'A narrow road through a pale birch forest',
+  },
+  {
+    src: '/photos/quiet-water.png',
+    alt: 'Soft ripples reflecting a distant warm light',
+    caption: 'A window, reflected and almost gone.',
+  },
+  {
+    src: '/photos/desert-light.png',
+    alt: 'Long shadows crossing pale desert dunes',
+  },
+  {
+    src: '/photos/blue-hour.png',
+    alt: 'A small cabin light beneath a deep blue sky',
+    caption: 'Night settles slowly over the ridge.',
+  },
+]
+
+export const metadata = {
+  title: 'The Weather Between Us — Field Notes',
+  description: 'A photographic study of quiet weather and the spaces it leaves behind.',
+}
+
+export default function PostPage() {
+  return (
+    <main className="site-shell post-shell">
+      <header className="site-header">
+        <Link className="site-title" href="/">Field Notes</Link>
+      </header>
+
+      <article>
+        <header className="post-header">
+          <h1>The Weather Between Us</h1>
+          <time dateTime="2024-10-14">October 14, 2024</time>
+        </header>
+
+        <p className="intro">
+          Weather is a kind of distance. It moves across a landscape before we notice it, changes the color of a familiar wall, and makes a road feel longer than it did yesterday. These photographs were made over one week at the edge of the season, when the air could not decide whether to hold on to summer or turn toward winter. I was looking for the small evidence of that hesitation: a light caught in dark water, a single tree keeping its leaves, the last warmth in a window after dusk. Nothing here is dramatic. The places are mostly empty, and the light is quiet. But looking closely, for long enough, makes an ordinary day feel briefly precise. The camera became a reason to stay still, to let the world arrive at its own pace, and to remember that change rarely announces itself.
+        </p>
+
+        <div className="photo-stack">
+          {photographs.map((photo, index) => (
+            <figure key={photo.src} className="photo-figure">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={1800}
+                height={1200}
+                priority={index === 0}
+                sizes="(max-width: 900px) 100vw, 900px"
+              />
+              {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
+            </figure>
+          ))}
+        </div>
+      </article>
+    </main>
+  )
+}
