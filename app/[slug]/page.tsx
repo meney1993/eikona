@@ -46,6 +46,9 @@ export default async function PostPage({ params }: PageProps<'/[slug]'>) {
         <Link className="site-title" href="/">
           {SITE_NAME}
         </Link>
+        <Link className="site-nav" href="/about">
+          About
+        </Link>
       </header>
 
       <article>
@@ -57,6 +60,7 @@ export default async function PostPage({ params }: PageProps<'/[slug]'>) {
         <div className="intro">
           <Blurb />
           {post.location ? <p className="post-location">{post.location}</p> : null}
+          {post.film ? <p className="post-film">{`Film: ${post.film}`}</p> : null}
         </div>
 
         <div className="photo-stack">

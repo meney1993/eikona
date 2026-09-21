@@ -12,6 +12,9 @@ export default function HomePage() {
         <Link className="site-title" href="/">
           {SITE_NAME}
         </Link>
+        <Link className="site-nav" href="/about">
+          About
+        </Link>
       </header>
 
       <section aria-label="Journal entries" className="index-list">

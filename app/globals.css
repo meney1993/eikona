@@ -39,11 +39,24 @@ a {
 }
 
 .site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
   margin-bottom: 96px;
 }
 
 .site-title {
   display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Same density as the site title, one step quieter in color. */
+.site-nav {
+  color: var(--muted);
   font-size: 12px;
   letter-spacing: 0.1em;
   line-height: 1;
@@ -118,7 +131,8 @@ a {
   margin-bottom: 0;
 }
 
-.post-location {
+.post-location,
+.post-film {
   color: var(--muted);
   font-size: 12px;
   letter-spacing: 0.02em;
@@ -178,7 +192,16 @@ a {
     font-size: 16px;
   }
 
-  .index-list {
+  /* Same density as the site title, one step quieter in color. */
+.site-nav {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.index-list {
     gap: 72px;
   }
 

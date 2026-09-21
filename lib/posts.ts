@@ -23,6 +23,8 @@ export type Post = {
   /** e.g. October 14, 2024 */
   displayDate: string
   location?: string
+  /** Film stock, e.g. Kodak Gold 200. The "Film:" label lives in the template. */
+  film?: string
   description?: string
   /** Shown on the index and at the top of the email */
   lead: Photo
@@ -110,6 +112,7 @@ function readPost(slug: string): Post {
       day: 'numeric',
     }),
     ...(typeof data.location === 'string' ? { location: data.location } : {}),
+    ...(typeof data.film === 'string' ? { film: data.film } : {}),
     ...(typeof data.description === 'string'
       ? { description: data.description }
       : {}),

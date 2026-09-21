@@ -53,6 +53,7 @@ A post is one folder of content plus one folder of photos.
    | `lead`        | no       | Must be one of `photos`; defaults to the first. Used on the index.  |
    | `photos`      | yes      | 4–5 reads best. `alt` is required on every one; `caption` optional. |
    | `location`    | no       | One line under the blurb, and in the email                          |
+   | `film`        | no       | Stock name only; the template renders it as `Film: <name>`          |
    | `description` | no       | Page metadata and the RSS `<description>`; falls back to the blurb  |
 
 3. `pnpm build`. The folder name becomes the URL (`/contrasts`), the
