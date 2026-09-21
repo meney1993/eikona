@@ -25,7 +25,7 @@ export default function AboutPage() {
         </header>
 
         <div className="intro">
-          <p>I make these sets with a Minolta SRT 102.</p>
+          <p>Exploring 35mm film photography and documenting my experience with a 1974 Minolta SRT 102. No editing on the photos, trying to capture what I find interesting, as it is.</p>
         </div>
       </article>
     </main>
