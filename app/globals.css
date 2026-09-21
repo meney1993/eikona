@@ -131,10 +131,24 @@ a {
   margin-bottom: 0;
 }
 
-.post-location,
-.post-film {
+.post-location {
   color: var(--muted);
   font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+/* Sections sit in the same rhythm as the gap between photos. */
+.film-section + .film-section {
+  margin-top: 112px;
+}
+
+/* Same micro density as the date; it labels the frames below it. */
+.film-label {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.4;
 }
@@ -192,17 +206,12 @@ a {
     font-size: 16px;
   }
 
-  /* Same density as the site title, one step quieter in color. */
-.site-nav {
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.index-list {
+  .index-list {
     gap: 72px;
+  }
+
+  .film-section + .film-section {
+    margin-top: 72px;
   }
 
   .photo-stack {

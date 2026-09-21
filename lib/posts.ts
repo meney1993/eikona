@@ -10,6 +10,9 @@ export type Photo = {
   /** Path under /public, e.g. /photos/contrasts/murray-mower.jpg */
   src: string
   alt: string
+  /** Film stock this frame was shot on, e.g. Kodak Gold 200 */
+  film: string
+  /** Optional one-line incident note */
   caption?: string
   width: number
   height: number
@@ -23,8 +26,6 @@ export type Post = {
   /** e.g. October 14, 2024 */
   displayDate: string
   location?: string
-  /** Film stock, e.g. Kodak Gold 200. The "Film:" label lives in the template. */
-  film?: string
   description?: string
   /** Shown on the index and at the top of the email */
   lead: Photo
@@ -38,13 +39,17 @@ function readPhoto(raw: unknown, slug: string): Photo {
     throw new Error(`${slug}: each entry in "photos" must be an object`)
   }
 
-  const { src, alt, caption } = raw as Record<string, unknown>
+  const { src, alt, film, caption } = raw as Record<string, unknown>
 
   if (typeof src !== 'string' || !src.startsWith('/')) {
     throw new Error(`${slug}: photo "src" must be a path under /public`)
   }
   if (typeof alt !== 'string' || alt.trim() === '') {
     throw new Error(`${slug}: photo ${src} is missing alt text`)
+  }
+
+  if (typeof film !== 'string' || film.trim() === '') {
+    throw new Error(`${slug}: photo ${src} is missing a "film" stock`)
   }
 
   const file = path.join(PUBLIC_DIR, src)
@@ -60,6 +65,7 @@ function readPhoto(raw: unknown, slug: string): Photo {
   return {
     src,
     alt,
+    film: film.trim(),
     width,
     height,
     ...(typeof caption === 'string' && caption.trim() !== ''
@@ -112,7 +118,6 @@ function readPost(slug: string): Post {
       day: 'numeric',
     }),
     ...(typeof data.location === 'string' ? { location: data.location } : {}),
-    ...(typeof data.film === 'string' ? { film: data.film } : {}),
     ...(typeof data.description === 'string'
       ? { description: data.description }
       : {}),
@@ -120,6 +125,31 @@ function readPost(slug: string): Post {
     photos,
     body: content,
   }
+}
+
+export type FilmGroup = {
+  film: string
+  photos: Photo[]
+}
+
+/**
+ * Photos grouped by film stock, in the order each stock first appears in the
+ * post. A roll can be split across a post, so a stock that reappears later
+ * joins its existing group rather than starting a second one.
+ */
+export function groupPhotosByFilm(photos: Photo[]): FilmGroup[] {
+  const groups: FilmGroup[] = []
+
+  for (const photo of photos) {
+    const group = groups.find((candidate) => candidate.film === photo.film)
+    if (group) {
+      group.photos.push(photo)
+    } else {
+      groups.push({ film: photo.film, photos: [photo] })
+    }
+  }
+
+  return groups
 }
 
 export function getPostSlugs() {

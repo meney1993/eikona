@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getPost, getPostSlugs } from '@/lib/posts'
+import { getPost, getPostSlugs, groupPhotosByFilm } from '@/lib/posts'
 import { SITE_NAME } from '@/lib/site'
 
 export const dynamicParams = false
@@ -39,6 +39,7 @@ export default async function PostPage({ params }: PageProps<'/[slug]'>) {
   if (!post) notFound()
 
   const { default: Blurb } = await import(`@/content/posts/${slug}/index.mdx`)
+  const groups = groupPhotosByFilm(post.photos)
 
   return (
     <main className="site-shell post-shell">
@@ -60,24 +61,29 @@ export default async function PostPage({ params }: PageProps<'/[slug]'>) {
         <div className="intro">
           <Blurb />
           {post.location ? <p className="post-location">{post.location}</p> : null}
-          {post.film ? <p className="post-film">{`Film: ${post.film}`}</p> : null}
         </div>
 
-        <div className="photo-stack">
-          {post.photos.map((photo, index) => (
-            <figure key={photo.src} className="photo-figure">
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                priority={index === 0}
-                sizes="(max-width: 900px) 100vw, 900px"
-              />
-              {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
-            </figure>
-          ))}
-        </div>
+        {groups.map((group) => (
+          <section key={group.film} className="film-section">
+            <h2 className="film-label">{group.film}</h2>
+
+            <div className="photo-stack">
+              {group.photos.map((photo) => (
+                <figure key={photo.src} className="photo-figure">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    priority={photo.src === post.photos[0].src}
+                    sizes="(max-width: 900px) 100vw, 900px"
+                  />
+                  {photo.caption ? <figcaption>{photo.caption}</figcaption> : null}
+                </figure>
+              ))}
+            </div>
+          </section>
+        ))}
       </article>
     </main>
   )

@@ -37,9 +37,11 @@ A post is one folder of content plus one folder of photos.
    photos:
      - src: /photos/contrasts/murray-mower.jpg
        alt: A red Murray mower in a dark shed, lit by hard sun
+       film: Kodak Ultramax 400
        caption: An optional one-line caption.
      - src: /photos/contrasts/door-shadow.jpg
        alt: A shadow falling across a white-painted door laid in the sun
+       film: Kodak Ultramax 400
    ---
 
    The blurb goes here, as ordinary markdown. The first two sentences are what
@@ -51,14 +53,17 @@ A post is one folder of content plus one folder of photos.
    | `title`       | yes      |                                                                     |
    | `date`        | yes      | `yyyy-mm-dd`; posts are listed newest first                         |
    | `lead`        | no       | Must be one of `photos`; defaults to the first. Used on the index.  |
-   | `photos`      | yes      | 4–5 reads best. `alt` is required on every one; `caption` optional. |
+   | `photos`      | yes      | 4–5 reads best. `alt` and `film` required on each; `caption` optional. |
    | `location`    | no       | One line under the blurb, and in the email                          |
-   | `film`        | no       | Stock name only; the template renders it as `Film: <name>`          |
    | `description` | no       | Page metadata and the RSS `<description>`; falls back to the blurb  |
 
 3. `pnpm build`. The folder name becomes the URL (`/contrasts`), the
    post appears on the index, and it enters the feed. Photo dimensions are read
    from the files, so there is nothing to measure by hand.
+
+   The post page groups the frames by `film`, in the order each stock first
+   appears, and prints the stock name above its group. A mixed roll just means
+   different `film` values — nothing else to set up.
 
 A missing photo, missing alt text, or a `lead` that isn't in `photos` fails the
 build with a message naming the post.
