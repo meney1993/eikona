@@ -7,7 +7,26 @@ __v0_jsx-dev-runtime.ts
 .vercel/
 
 # Environment variables
+.env
+.env.*
 .env*.local
+!.env.example
+
+# Secrets and credentials
+secrets/
+*.pem
+*.key
+
+# AI agent context — local only, not for a public repo
+AGENTS.md
+CLAUDE.md
+.cursor/
+
+# Shared bot/Claude scratch (local drafts)
+scratch/
+
+# Private Site Manager / call memory (never push)
+.leora/
 
 # Common ignores
 node_modules
