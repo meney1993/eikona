@@ -32,6 +32,69 @@ a {
   text-decoration: none;
 }
 
+/* Splash intro (home only).
+   Hidden unless the inline script opts it in, so no script means no splash
+   and no flash for an already-seen tab. Opacity only — nothing scales. */
+.splash {
+  display: none;
+}
+
+.splash[data-run] {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  animation: splash-veil 1s ease forwards;
+}
+
+/* Same face, weight and tracking as .site-title, a little larger to read. */
+.splash-word {
+  color: var(--foreground);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  opacity: 0;
+  text-transform: uppercase;
+}
+
+.splash[data-run] .splash-word {
+  animation: splash-word 1s ease forwards;
+}
+
+@keyframes splash-word {
+  0% {
+    opacity: 0;
+  }
+  50%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes splash-veil {
+  0%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Belt and braces: the script already skips, this covers a stale attribute. */
+@media (prefers-reduced-motion: reduce) {
+  .splash[data-run] {
+    display: none;
+  }
+}
+
 .site-shell {
   width: min(100% - 48px, 900px);
   margin: 0 auto;
