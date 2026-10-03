@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
 import { SITE_NAME } from '@/lib/site'
+import { SignupForm } from './signup-form'
 import { SPLASH_ID, SplashIntro, splashInit } from './splash-intro'
 
 export default function HomePage() {
@@ -30,16 +31,7 @@ export default function HomePage() {
           {/* Native POST so Buttondown can redirect for captcha or a bad address. */}
           <details className="signup-disclosure">
             <summary className="signup-summary">Subscribe</summary>
-            <form
-              className="signup-line"
-              method="post"
-              action="https://buttondown.com/api/emails/embed-subscribe/eikona"
-            >
-              <label htmlFor="signup-email">Email</label>
-              <input id="signup-email" type="email" name="email" required />
-              <input type="hidden" name="embed" value="1" />
-              <button type="submit">Subscribe</button>
-            </form>
+            <SignupForm />
           </details>
         </header>
 

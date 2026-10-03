@@ -165,13 +165,22 @@ a {
 /* Same quiet face as the date, sentence case. */
 .signup-line {
   grid-column: 1 / -1;
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
   margin-top: 24px;
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
+}
+
+.signup-row {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+/* In flow under the field; [hidden] takes it out entirely when valid. */
+.signup-error {
+  margin: 8px 0 0;
+  color: var(--foreground);
 }
 
 .signup-line input {
