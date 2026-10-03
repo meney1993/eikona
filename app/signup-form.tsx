@@ -7,8 +7,8 @@ const EMAIL = /^\S+@\S+\.\S+$/
 /**
  * The home signup form. A client component rather than an inline script so
  * the check mounts with the form, including when home is drawn after an
- * in-site click. A valid address still leaves as a native POST, so
- * Buttondown can redirect for captcha or a bad address.
+ * in-site click. A bad address is cancelled in onSubmit. A valid address
+ * still leaves as a native POST, so Buttondown can redirect for captcha.
  */
 export function SignupForm() {
   const [invalid, setInvalid] = useState(false)

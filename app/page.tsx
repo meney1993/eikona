@@ -28,7 +28,7 @@ export default function HomePage() {
           <Link className="site-nav" href="/about">
             About
           </Link>
-          {/* Native POST so Buttondown can redirect for captcha or a bad address. */}
+          {/* A bad address never leaves. A valid one still posts natively, so Buttondown can redirect for captcha. */}
           <details className="signup-disclosure">
             <summary className="signup-summary">Subscribe</summary>
             <SignupForm />
