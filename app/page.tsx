@@ -20,13 +20,27 @@ export default function HomePage() {
       <SplashIntro />
 
       <main className="site-shell">
-        <header className="site-header">
+        <header className="site-header site-header-home">
           <Link className="site-title" href="/">
             {SITE_NAME}
           </Link>
           <Link className="site-nav" href="/about">
             About
           </Link>
+          {/* Native POST so Buttondown can redirect for captcha or a bad address. */}
+          <details className="signup-disclosure">
+            <summary className="signup-summary">Subscribe</summary>
+            <form
+              className="signup-line"
+              method="post"
+              action="https://buttondown.com/api/emails/embed-subscribe/eikona"
+            >
+              <label htmlFor="signup-email">Email</label>
+              <input id="signup-email" type="email" name="email" required />
+              <input type="hidden" name="embed" value="1" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </details>
         </header>
 
         <section aria-label="Journal entries" className="index-list">
@@ -47,18 +61,6 @@ export default function HomePage() {
             </Link>
           ))}
         </section>
-
-        {/* Native POST so Buttondown can redirect for captcha or a bad address. */}
-        <form
-          className="signup-strip"
-          method="post"
-          action="https://buttondown.com/api/emails/embed-subscribe/eikona"
-        >
-          <label htmlFor="signup-email">Email</label>
-          <input id="signup-email" type="email" name="email" required />
-          <input type="hidden" name="embed" value="1" />
-          <button type="submit">Subscribe</button>
-        </form>
       </main>
     </>
   )

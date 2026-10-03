@@ -126,6 +126,87 @@ a {
   text-transform: uppercase;
 }
 
+/* Home header only: Subscribe beside About, the open line spans the row. */
+.site-header-home {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  column-gap: 24px;
+  row-gap: 0;
+}
+
+.signup-disclosure {
+  display: contents;
+}
+
+/* Where the browser wraps details content in its own box, that box is the
+   grid item, so it is the one that has to span the row. */
+.signup-disclosure::details-content {
+  grid-column: 1 / -1;
+}
+
+/* Same face as .site-nav. */
+.signup-summary {
+  padding: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  list-style: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.signup-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Same quiet face as the date, sentence case. */
+.signup-line {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.signup-line input {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 320px;
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 1px solid var(--muted);
+  border-radius: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  outline: none;
+}
+
+.signup-line input:focus-visible {
+  border-bottom-color: var(--foreground);
+}
+
+.signup-line button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.signup-summary:focus-visible,
+.signup-line button:focus-visible {
+  outline: 1px solid var(--foreground);
+  outline-offset: 4px;
+}
+
 .index-list {
   display: flex;
   flex-direction: column;
@@ -232,44 +313,6 @@ a {
   height: auto;
 }
 
-/* Home signup: same rhythm as the entries, same quiet face as the date. */
-.signup-strip {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  margin-top: 112px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.signup-strip input {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 320px;
-  padding: 0 0 4px;
-  border: 0;
-  border-bottom: 1px solid var(--muted);
-  border-radius: 0;
-  background: transparent;
-  color: var(--foreground);
-  font: inherit;
-  outline: none;
-}
-
-.signup-strip input:focus-visible {
-  border-bottom-color: var(--foreground);
-}
-
-.signup-strip button {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
 .photo-figure figcaption {
   margin-top: 13px;
   color: var(--muted);
@@ -309,10 +352,6 @@ a {
 
   .index-list {
     gap: 72px;
-  }
-
-  .signup-strip {
-    margin-top: 72px;
   }
 
   .film-section + .film-section {
