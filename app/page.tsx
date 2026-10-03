@@ -47,6 +47,18 @@ export default function HomePage() {
             </Link>
           ))}
         </section>
+
+        {/* Native POST so Buttondown can redirect for captcha or a bad address. */}
+        <form
+          className="signup-strip"
+          method="post"
+          action="https://buttondown.com/api/emails/embed-subscribe/eikona"
+        >
+          <label htmlFor="signup-email">Email</label>
+          <input id="signup-email" type="email" name="email" required />
+          <input type="hidden" name="embed" value="1" />
+          <button type="submit">Subscribe</button>
+        </form>
       </main>
     </>
   )
